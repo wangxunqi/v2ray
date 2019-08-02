@@ -62,8 +62,15 @@
   ],
   "outbounds": [
     {
-      "settings": {},
-      "protocol": "freedom"
+      "settings": {
+        "servers": [
+          {
+            "port": 9050,
+            "address": "127.0.0.1"
+          }
+        ]
+      },
+      "protocol": "socks"
     },
     {
       "settings": {},

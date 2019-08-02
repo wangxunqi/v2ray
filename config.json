@@ -1,8 +1,15 @@
 {
   "outbounds": [
     {
-      "protocol": "freedom",
-      "settings": {}
+      "protocol": "socks",
+      "settings": {
+        "servers": [
+          {
+            "port": 9050,
+            "address": "127.0.0.1"
+          }
+        ]
+      }
     },
     {
       "protocol": "blackhole",
