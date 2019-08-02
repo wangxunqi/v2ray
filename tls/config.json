@@ -1,0 +1,74 @@
+{
+  "routing": {
+    "rules": [
+      {
+        "outboundTag": "blocked",
+        "type": "field",
+        "ip": [
+          "0.0.0.0/8",
+          "10.0.0.0/8",
+          "100.64.0.0/10",
+          "169.254.0.0/16",
+          "172.16.0.0/12",
+          "192.0.0.0/24",
+          "192.0.2.0/24",
+          "192.168.0.0/16",
+          "198.18.0.0/15",
+          "198.51.100.0/24",
+          "203.0.113.0/24",
+          "::1/128",
+          "fc00::/7",
+          "fe80::/10"
+        ]
+      }
+    ]
+  },
+  "inbounds": [
+    {
+      "settings": {
+        "clients": [
+          {
+            "alterId": 16,
+            "id": "356dcf84-6692-4686-b6de-ba388faf89c8"
+          }
+        ]
+      },
+      "port": 8080,
+      "streamSettings": {
+        "wsSettings": {
+          "headers": {
+            "Host": "xn--bpwn78e.eu.org"
+          },
+          "connectionReuse": true,
+          "path": "/"
+        },
+        "tlsSettings": {
+          "certificates": [
+            {
+              "certificateFile": "/etc/v2ray/fullchain.cer",
+              "keyFile": "/etc/v2ray/xn--bpwn78e.eu.org.key"
+            }
+          ]
+        },
+        "tcpSettings": {},
+        "network": "ws",
+        "kcpSettings": {},
+        "security": "tls",
+        "quicSettings": {},
+        "httpSettings": {}
+      },
+      "protocol": "vmess"
+    }
+  ],
+  "outbounds": [
+    {
+      "settings": {},
+      "protocol": "freedom"
+    },
+    {
+      "settings": {},
+      "protocol": "blackhole",
+      "tag": "blocked"
+    }
+  ]
+}
