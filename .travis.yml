@@ -1,8 +1,0 @@
-sudo: required
-language: minimal
-dist: xenial
-services:
-  - docker
-script:
-  - docker build -t wangxunqi/v2ray .
-  - docker run --rm -it -P wangxunqi/v2ray
