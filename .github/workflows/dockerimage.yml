@@ -1,0 +1,16 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag wangxunqi/v2ray:latest
+    - name: Run the Docker image
+      run: docker run -d -p 80:8080 wangxunqi/v2ray:latest && curl 127.0.0.1

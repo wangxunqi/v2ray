@@ -1,0 +1,100 @@
+{
+ "routing": {
+  "domainStrategy": "IPIfNonMatch",
+  "rules": [
+   {
+    "outboundTag": "direct",
+    "type": "field",
+    "ip": [
+     "geoip:private"
+    ]
+   },
+   {
+    "outboundTag": "direct",
+    "domain": [
+     "geosite:cn"
+    ],
+    "type": "field"
+   },
+   {
+    "outboundTag": "direct",
+    "domain": [
+     "geoip:cn"
+    ],
+    "type": "field"
+   }
+  ]
+ },
+ "log": {
+  "loglevel": "info",
+  "error": "",
+  "access": ""
+ },
+ "dns": {
+  "servers": [
+   "8.8.8.8",
+   "8.8.4.4",
+   "localhost"
+  ]
+ },
+ "inbounds": [
+  {
+   "streamSettings": null,
+   "settings": {
+    "auth": "noauth",
+    "clients": null,
+    "ip": "127.0.0.1",
+    "udp": true
+   },
+   "port": 1080,
+   "protocol": "socks",
+   "listen": "0.0.0.0"
+  }
+ ],
+ "outbounds": [
+  {
+   "settings": {
+    "vnext": [
+     {
+      "address": "xn--bpwn78e.eu.org",
+      "users": [
+       {
+        "alterId": 16,
+        "security": "aes-128-gcm",
+        "id": "356dcf84-6692-4686-b6de-ba388faf89c8"
+       }
+      ],
+      "port": 443
+     }
+    ]
+   },
+   "protocol": "vmess",
+   "mux": {
+    "enabled": true
+   },
+   "streamSettings": {
+    "security": "tls",
+    "httpSettings": {},
+    "tlsSettings": {},
+    "tcpSettings": {},
+    "kcpSettings": {},
+    "wsSettings": {
+     "headers": {
+      "Host": "xn--bpwn78e.eu.org"
+     },
+     "connectionReuse": true,
+     "path": "/"
+    },
+    "quicSettings": {},
+    "network": "ws"
+   }
+  },
+  {
+   "settings": {
+    "response": null
+   },
+   "protocol": "freedom",
+   "tag": "direct"
+  }
+ ]
+}
