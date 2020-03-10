@@ -24,7 +24,7 @@ jobs:
         go env
         git clone https://github.com/v2ray/v2ray-core.git $HOME/src
         cd $HOME/src
-        go get -u v2ray.com/core/...
+        go get -u ./...
         cd $HOME/src/main
         go build -o $HOME/v2ray
         cd $HOME/src/infra/control/main
