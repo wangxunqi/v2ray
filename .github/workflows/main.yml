@@ -15,10 +15,13 @@ jobs:
     - env:
         GOOS: android
         GOARCH: arm
-        CGO_ENABLED: 0
+        CGO_ENABLED: 1
         GOARM: 7
       run: |
-        go env
+        wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip
+        unzip android-ndk-r20b-linux-x86_64.zip
+        go env -w CC=$PWD/android-ndk-r20b/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi19-clang
+        go env -w CXX=$PWD/android-ndk-r20b/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi19-clang++
         git clone https://github.com/v2ray/v2ray-core.git $HOME/src
         cd $HOME/src
         go get -u ./...
