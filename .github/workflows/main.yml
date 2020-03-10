@@ -13,13 +13,14 @@ jobs:
         go-version: 1.13
 
     - env:
-        GOOS: linux
-        GOARCH: arm64
+        GOOS: android
+        GOARCH: arm
         CGO_ENABLED: 0
       run: |
-        git clone https://github.com/v2ray/v2ray-core.git $(go env GOPATH)/src/v2ray.com/core
+        git clone https://github.com/v2ray/v2ray-core.git $HOME/src
+        cd $HOME/src
         go get -u v2ray.com/core/...
-        cd $(go env GOPATH)/src/v2ray.com/core/main
+        cd $HOME/src/main
         go build -o $HOME/v2ray
-        cd $(go env GOPATH)/src/v2ray.com/core/infra/control/main
+        cd $HOME/src/infra/control/main
         go build -o $HOME/v2ctl
