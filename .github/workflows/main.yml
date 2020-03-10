@@ -34,9 +34,9 @@ jobs:
     - uses: actions/upload-artifact@master
       with:
         name: v2ray
-        path: /home/worker/v2ray
+        path: /home/runner/v2ray
 
     - uses: actions/upload-artifact@master
       with:
         name: v2ctl
-        path: /home/worker/v2ctl
+        path: /home/runner/v2ctl
