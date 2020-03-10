@@ -1,12 +1,12 @@
 FROM golang:alpine as builder
 
 RUN apk add --no-cache git build-base; \
-    git clone https://github.com/v2ray/v2ray-core.git /tmp/src; \
-    cd /tmp/src; \
+    git clone https://github.com/v2ray/v2ray-core.git /src; \
+    cd /src; \
     go get -u ./...; \
-    cd /tmp/src/main; \
+    cd /src/main; \
     go build -o /v2ray; \
-    cd /tmp/src/infra/control/main; \
+    cd /src/infra/control/main; \
     go build -o /v2ctl
 
 FROM alpine:latest
