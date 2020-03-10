@@ -16,6 +16,7 @@ jobs:
         GOOS: android
         GOARCH: arm
         CGO_ENABLED: 1
+        GOARM: 7
       run: |
         wget https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip
         unzip android-ndk-r20b-linux-x86_64.zip
@@ -29,3 +30,13 @@ jobs:
         go build -o $HOME/v2ray
         cd $HOME/src/infra/control/main
         go build -o $HOME/v2ctl
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: v2ray
+        path: /home/worker/v2ray
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: v2ctl
+        path: /home/worker/v2ctl
