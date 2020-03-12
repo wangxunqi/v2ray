@@ -23,7 +23,6 @@ jobs:
         go env -w CXX=$PWD/android-ndk-r20b/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android28-clang++
         git clone https://github.com/geph-official/geph2.git $HOME/src
         cd $HOME/src/cmd/geph-client
-        go get -u ./...
         go build -o $HOME/geph-client
 
     - uses: actions/upload-artifact@master
