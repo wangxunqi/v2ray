@@ -1,13 +1,9 @@
 FROM golang:alpine as builder
 
 RUN apk add --no-cache git build-base; \
-    git clone https://github.com/v2ray/v2ray-core.git /src; \
-    cd /src; \
-    go get -u ./...; \
-    cd /src/main; \
-    go build -o /v2ray; \
-    cd /src/infra/control/main; \
-    go build -o /v2ctl
+    go get -insecure -u v2ray.com/core/...; \
+    go build -o /v2ray v2ray.com/core/main; \
+    go build -o /v2ctl v2ray.com/core/infra/control/main
 
 FROM alpine:latest
 
