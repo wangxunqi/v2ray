@@ -2,8 +2,8 @@ FROM golang:alpine as builder
 
 RUN apk add --no-cache git build-base; \
     go get -insecure -u v2ray.com/core/...; \
-    go build -o /v2ray v2ray.com/core/main; \
-    go build -o /v2ctl v2ray.com/core/infra/control/main
+    go build -o /v2ray -ldflags "-s -w" v2ray.com/core/main; \
+    go build -o /v2ctl -tags confonly -ldflags "-s -w" v2ray.com/core/infra/control/main
 
 FROM alpine:latest
 
