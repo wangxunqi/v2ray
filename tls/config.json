@@ -31,8 +31,8 @@
                     ],
                     "certificates": [
                         {
-                            "certificateFile": "/etc/v2ray/fullchain.crt",
-                            "keyFile": "/etc/v2ray/private.key"
+                            "certificateFile": "/etc/v2ray/tls.crt",
+                            "keyFile": "/etc/v2ray/tls.key"
                         }
                     ]
                 }
