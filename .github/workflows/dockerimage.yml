@@ -15,4 +15,4 @@ jobs:
         cd tls
         docker build . --file Dockerfile --tag wangxunqi/v2ray:latest
     - name: Run the Docker image
-      run: docker run -d -p 443:443 wangxunqi/v2ray:latest && curl https://127.0.0.1
+      run: docker run -d -p 443:443 wangxunqi/v2ray:latest && curl -k https://127.0.0.1
