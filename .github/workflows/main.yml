@@ -1,4 +1,4 @@
-name: Build
+name: Geph
 
 on: [push]
 
@@ -8,31 +8,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/setup-go@v1
-      with:
-        go-version: 1.13
-
-    - env:
-        GOOS: android
-        GOARCH: arm64
-        CGO_ENABLED: 1
-      run: |
-        wget -q https://dl.google.com/android/repository/android-ndk-r20b-linux-x86_64.zip
-        unzip -q android-ndk-r20b-linux-x86_64.zip
-        export NDK=$PWD/android-ndk-r20b
-        export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
-        export AR=$TOOLCHAIN/bin/aarch64-linux-android-ar
-        export AS=$TOOLCHAIN/bin/aarch64-linux-android-as
-        export CC=$TOOLCHAIN/bin/aarch64-linux-android29-clang
-        export CXX=$TOOLCHAIN/bin/aarch64-linux-android29-clang++
-        export LD=$TOOLCHAIN/bin/aarch64-linux-android-ld
-        export RANLIB=$TOOLCHAIN/bin/aarch64-linux-android-ranlib
-        export STRIP=$TOOLCHAIN/bin/aarch64-linux-android-strip
-        git clone https://github.com/geph-official/geph2.git $HOME/src
-        cd $HOME/src/cmd/geph-client
-        go build -ldflags "-s -w -linkmode=external" -o $HOME/geph-client
+    - run: |
+        wget -q https://dl.google.com/android/repository/android-ndk-r21b-linux-x86_64.zip
+        unzip -q android-ndk-r21b-linux-x86_64.zip
+        export CC=$PWD/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/armv7a-linux-androideabi24-clang
+        go get -insecure -u v2ray.com/core/...
+        go build -o $HOME/v2ray -trimpath -ldflags "-s -w" v2ray.com/core/main
+        go build -o $HOME/v2ctl -trimpath -tags confonly -ldflags "-s -w" v2ray.com/core/infra/control/main
 
     - uses: actions/upload-artifact@master
       with:
-        name: geph-client
-        path: /home/runner/geph-client
+        name: v2ray
+        path: /home/runner/v2ray
+
+    - uses: actions/upload-artifact@master
+      with:
+        name: v2ctl
+        path: /home/runner/v2ctl
