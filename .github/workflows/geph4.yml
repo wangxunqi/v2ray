@@ -1,4 +1,4 @@
-name: Geph
+name: Geph4
 
 on: [push]
 
@@ -11,12 +11,7 @@ jobs:
     - run: |
         curl -sSf https://sh.rustup.rs | sh -s -- -y
         export PATH=$HOME/.cargo/bin:$PATH
-        wget -q https://dl.google.com/android/repository/android-ndk-r21b-linux-x86_64.zip
-        unzip -q android-ndk-r21b-linux-x86_64.zip
-        export CC=$PWD/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang
-        export CXX=$PWD/android-ndk-r21b/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++
         cargo install cross
-        rustup target add aarch64-linux-android
         git clone https://github.com/geph-official/geph4.git
         cd geph4/
         cross build --release --target aarch64-linux-android --manifest-path=geph4-client/Cargo.toml
