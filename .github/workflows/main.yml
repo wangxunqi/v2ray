@@ -22,10 +22,5 @@ jobs:
         cross build --release --target aarch64-linux-android --manifest-path=geph4-client/Cargo.toml
     - uses: actions/upload-artifact@master
       with:
-        name: v2ray
-        path: /home/runner/v2ray
-
-    - uses: actions/upload-artifact@master
-      with:
-        name: v2ctl
-        path: /home/runner/v2ctl
+        name: geph4-client
+        path: target/aarch64-linux-android/release/geph4-client
