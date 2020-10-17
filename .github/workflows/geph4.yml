@@ -18,7 +18,7 @@ jobs:
     - uses: svenstaro/upload-release-action@v2
       with:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
-        file: target/aarch64-linux-android/release/geph4-client
+        file: geph4/target/aarch64-linux-android/release/geph4-client
         asset_name: geph4-client
         tag: ${{ github.ref }}
         overwrite: true
