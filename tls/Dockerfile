@@ -1,11 +1,11 @@
 FROM golang:alpine as builder
 
-WORKDIR /root
+WORKDIR /tmp
 
 RUN apk add --no-cache git build-base; \
     git clone https://github.com/v2fly/v2ray-core.git; \
     cd v2ray-core; \
-    go get -u ./...; \
+    go mod download; \
     go build -o /v2ray -ldflags "-s -w" ./main; \
     go build -o /v2ctl -tags confonly -ldflags "-s -w" ./infra/control/main
 
